@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['Submit_Login'])) {
     $email = trim($_POST['email']);
-    $pwd = trim($_POST['pwd']);
+    $pwd = md5(trim($_POST['pwd']));
     include('includes/dbc.php');
     $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$pwd'";
         $result = mysqli_query($con, $sql);
