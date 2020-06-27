@@ -11,7 +11,25 @@
 <head>
 <title>My Gaming Products Site</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/juery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#sendData').click(function() {
+            var theId = $('#id').val();
+            var newTitle = $('#title').val();
+            var newContent = $('#message').val();
+            $.post('AJAX/ajax_update.php', { table:"home_page", id:theId, title:newTitle, message:newContent},
+            function(response, textStatus, jqXHR){
+                if(response) {
+                    $('#updateResults').html('The response: '+response+ '<strong>' +textStatus+'</strong>');
+                    $('#updateResults').append('<br><a href="home.php">Return to Home page</a>');
+                } else {
+                    $('#updateResults').html("Sorry! It didn't work!");
+                }
+            });
+        });
+    });
+</script>
 </head>
 
 <body>
@@ -52,10 +70,10 @@
             $sql = "SELECT * FROM $table WHERE id='$id'";
             $result = mysqli_query($con, $sql);
             while($row=mysqli_fetch_assoc($result)) {
-                echo '<input type="hidden" name="id" id="id" value='.$id.'">';
+                echo '<input type="hidden" name="id" id="id" value="'.$id.'">';
                 echo '<input type="hidden" name="table" id="table" value="'.$table.'">';
                 echo '<p><input type="text" name="title" id="title" value="'.$row['title'].'"></p>';
-                echo '<p><textarea name="message" id="message" rows"20" cols="75">'.$row['message'].'</textarea></p>';
+                echo '<p><textarea name="message" id="message" rows="20" cols="75">'.$row['message'].'</textarea></p>';
             }// end while
             ?>
             <p><input type="button" name="Submit_Update" id="sendData" value="Update"></p>

@@ -37,11 +37,11 @@
         while($row=mysqli_fetch_assoc($result)) {
 			if(isset($user)) {
 				echo '<div style="float:right; padding:10px;">';
-				echo '<a href="ajax_edit.php?id='.$row['id'].'&table=home_page">Edit</a>';
+				echo '<a href="ajax_edit.php?id=' . $row['id'] . '&table=home_page">Edit</a>';
 				echo '</div>';
 			}
-            echo '<h2>' .$row['title'].'</h2>';
-            echo '<p>' .$row['message'].'</p>';
+            echo '<h2>'.$row['title'].'</h2>';
+            echo '<p>'.$row['message'].'</p>';
         }
         mysqli_free_result($result);
         mysqli_close($con);

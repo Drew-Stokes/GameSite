@@ -51,10 +51,10 @@
         $sql = "SELECT * FROM $table WHERE id='$id'";
         $result = mysqli_query($con, $sql);
         while($row=mysqli_fetch_assoc($result)) {
-            echo '<input type="hidden" name="id" value='.$id.'">';
+            echo '<input type="hidden" name="id" value="'.$id.'">';
             echo '<input type="hidden" name="table" value="'.$table.'">';
             echo '<p><input type="text" name="title" value="'.$row['title'].'"></p>';
-            echo '<p><textarea name="message" rows"20" cols="75">'.$row['message'].'</textarea></p>';
+            echo '<p><textarea name="message" rows="20" cols="75">'.$row['message'].'</textarea></p>';
         }// end while
         ?>
         <p><input type="submit" name="Submit_Update" value="Update"></p>

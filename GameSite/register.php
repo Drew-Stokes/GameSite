@@ -1,5 +1,5 @@
 <?php
-        if(isset($_POST['submit_resgister'])) {
+        if(isset($_POST['submit_register'])) {
             $email = $_POST['email'];
             $pwd = md5($_POST['password']);
             include('includes/dbc.php');
@@ -33,7 +33,7 @@
 
 	<section>
 	<h2>Registration Form</h2>
-                <form id="form1" name="form1" action="<?php $_SERVER['PHP_SELF']; ?>">
+                <form id="form1" name="form1" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                     <p>Email Address:<br><input type="text" name="email"></p>
                     <p>Password:<br><input type="password" name="password"></p>
                     <p><input type="submit" value="Submit" name="submit_register"></p>
